@@ -1,0 +1,23 @@
+{
+  "name": "1337_news",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "14.0.27",
+    "solid-js": "^0.18.14",
+    "solid-scripts": "0.0.38",
+    "typescript": "3.9.7"
+  },
+  "dependencies": {},
+  "scripts": {
+    "start": "solid-scripts start",
+    "build": "solid-scripts build"
+  },
+  "browserslist": [
+    "Chrome 74",
+    "Firefox 63",
+    "Safari 11",
+    "Edge 17",
+    "Node 10"
+  ]
+}
