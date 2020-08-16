@@ -30,6 +30,7 @@ function createStore() {
 
   return {
     getItem,
+    getItems,
     getStories
   };
 }
