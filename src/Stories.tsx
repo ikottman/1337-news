@@ -2,6 +2,7 @@ import { createState, createEffect } from "solid-js";
 import { For } from "solid-js/dom";
 import { useStore } from "./Store";
 import { Story } from "./Story";
+import './Stories.css';
 
 export const Stories = () => {
   const [state, setState] = createState({
@@ -15,7 +16,7 @@ export const Stories = () => {
   });
 
   return (
-    <>
+    <ul>
       <For each={state.stories}>
         {
           (story) => {
@@ -25,6 +26,6 @@ export const Stories = () => {
         }
       }
       </For>
-    </>
+    </ul>
   );
 };

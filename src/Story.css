@@ -1,0 +1,20 @@
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  border-bottom: 2px solid;
+}
+
+li {
+  padding-bottom: 3px;
+}
