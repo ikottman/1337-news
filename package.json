@@ -11,7 +11,7 @@
   "dependencies": {},
   "scripts": {
     "start": "solid-scripts start",
-    "build": "solid-scripts build"
+    "build": "rm -rf ../../blog/static/apps/1337-news && solid-scripts build && mv build ../../blog/static/apps/1337-news && echo \"https://github.com/ikottman/1337-news/commit/$(git rev-parse HEAD)\""
   },
   "homepage": "https://ikottman.com/apps/1337-news/",
   "browserslist": [
