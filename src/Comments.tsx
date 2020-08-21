@@ -21,13 +21,21 @@ export const Comments = () => {
 
   createEffect(async () => {
     const storyId = window.location.hash.split('/')[1];
-    console.log(storyId);
     const story = await getItem(storyId);
-    console.log(JSON.stringify(story.kids));
-    const comments = await getItems(story.kids, 0, 30);
-    console.log(JSON.stringify(comments));
+    const comments = await getItems(story.kids, 0, 30);;
     setState({ comments });
   });
+
+  function username(comment: Comment) {
+    if (!comment.kids) {
+      return <div class="username">{comment.by}</div>;
+    }
+    return (
+      <a href={`#comments/${comment.id}`}>
+        <span class="username">{comment.by} - {comment.kids.length}</span>
+      </a>
+    );
+  }
 
   return (
     <ul>
@@ -36,11 +44,10 @@ export const Comments = () => {
           (comment: Comment) => {
             return (
             <div>
-              <div class="username">{comment.by}</div>
+              {username(comment)}
               <div class="comment" innerHTML={comment.text || ""} />
               <br/>
             </div>
-
           );
         }
       }

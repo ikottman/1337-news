@@ -25,6 +25,9 @@ function App() {
         <Match when={matches("story")}>
           <Comments/>
         </Match>
+        <Match when={matches("comments")}>
+          <Comments/>
+        </Match>
       </Switch>
     </StoreProvider>
   );
