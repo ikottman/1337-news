@@ -16,9 +16,12 @@ a:hover {
 }
 
 li {
-  padding: 5px;
+  margin-top: 10px;
 }
 
 .comments {
-  font-size: 12px;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
 }
