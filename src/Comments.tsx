@@ -32,7 +32,7 @@ export const Comments = () => {
     }
     return (
       <a class="username" href={`#comments/${comment.id}`}>
-        <span>{comment.by} - {comment.kids.length} child comments</span>
+        <span>{comment.by} - {comment.kids.length} child {comment.kids.length === 1 ? 'comment' : 'comments'}</span>
       </a>
     );
   }
