@@ -3,6 +3,7 @@ import { Switch, Match } from "solid-js/dom";
 import { Stories } from './Stories';
 import { StoreProvider } from './Store';
 import { Comments } from "./Comments";
+import { Header } from "./Header";
 
 function createRouteHandler() {
   const [location, setLocation] = createSignal(
@@ -18,6 +19,7 @@ function App() {
   const matches = createRouteHandler();
   return (
     <StoreProvider>
+      <Header/>
       <Switch>
         <Match when={matches("stories")}>
           <Stories/>

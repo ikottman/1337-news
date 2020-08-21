@@ -28,12 +28,27 @@ export const Comments = () => {
 
   function username(comment: Comment) {
     if (!comment.kids) {
-      return <div class="username">{comment.by}</div>;
+      return <span class="username">{comment.by}</span>;
     }
     return (
-      <a href={`#comments/${comment.id}`}>
-        <span class="username">{comment.by} - {comment.kids.length}</span>
+      <a class="username" href={`#comments/${comment.id}`}>
+        <span>{comment.by} - {comment.kids.length} child comments</span>
       </a>
+    );
+  }
+
+  function renderComment(comment: Comment) {
+    if (!comment.text) {
+      return null;
+    }
+    return (
+      <div>
+        {username(comment)}
+        <p class="comment" innerHTML={comment.text} />
+        <div>
+          <div class="divider"/>
+        </div>
+      </div>
     );
   }
 
@@ -41,16 +56,8 @@ export const Comments = () => {
     <ul>
       <For each={state.comments}>
         {
-          (comment: Comment) => {
-            return (
-            <div>
-              {username(comment)}
-              <div class="comment" innerHTML={comment.text || ""} />
-              <br/>
-            </div>
-          );
+          (comment: Comment) => <>{renderComment(comment)}</>
         }
-      }
       </For>
     </ul>
   );
