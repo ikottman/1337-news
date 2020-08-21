@@ -1,4 +1,4 @@
-import { createState, createEffect } from "solid-js";
+import { createState, createEffect, createSignal, onCleanup } from "solid-js";
 import { For } from "solid-js/dom";
 import { useStore } from "./Store";
 import './Comments.css';
@@ -12,16 +12,16 @@ import './Comments.css';
    time: number,
    type: string
  };
-
 export const Comments = () => {
-  const [state, setState] = createState({
-    comments: []
-  }),
-    { getItems, getItem } = useStore();
+  const [state, setState] = createState({comments: []});
+  const { getItems, getItem } = useStore();
+  const [storyId, setStoryId] = createSignal(window.location.hash.split('/')[1]);
+  const handleHashChange = () => setStoryId(window.location.hash.split('/')[1]);
+  window.addEventListener("hashchange", handleHashChange);
+  onCleanup(() => window.removeEventListener("hashchange", handleHashChange));
 
   createEffect(async () => {
-    const storyId = window.location.hash.split('/')[1];
-    const story = await getItem(storyId);
+    const story = await getItem(storyId());
     const comments = await getItems(story.kids, 0, 30);;
     setState({ comments });
   });

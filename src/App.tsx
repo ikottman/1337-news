@@ -6,10 +6,8 @@ import { Comments } from "./Comments";
 import { Header } from "./Header";
 
 function createRouteHandler() {
-  const [location, setLocation] = createSignal(
-      window.location.hash.slice(1) || "stories"
-    ),
-    locationHandler = () => setLocation(window.location.hash.slice(1) || "stories");
+  const [location, setLocation] = createSignal(window.location.hash.slice(1) || "stories");
+  const locationHandler = () => setLocation(window.location.hash.slice(1) || "stories");
   window.addEventListener("hashchange", locationHandler);
   onCleanup(() => window.removeEventListener("hashchange", locationHandler));
   return (match: string) => location().includes(match);
