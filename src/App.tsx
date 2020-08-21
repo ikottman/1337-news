@@ -22,9 +22,6 @@ function App() {
         <Match when={matches("stories")}>
           <Stories/>
         </Match>
-        <Match when={matches("story")}>
-          <Comments/>
-        </Match>
         <Match when={matches("comments")}>
           <Comments/>
         </Match>

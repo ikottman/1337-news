@@ -3,7 +3,7 @@ import './Story.css';
 export const Story = (props: any) => {
   return (
     <li>
-      <a href={`#story/${props.story.id}`}>{
+      <a href={`#comments/${props.story.id}`}>{
           props.story.descendants ? `${props.story.descendants}` : '0'
         }</a>
       <span> | </span>
