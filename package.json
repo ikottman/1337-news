@@ -13,6 +13,7 @@
     "start": "solid-scripts start",
     "build": "solid-scripts build"
   },
+  "homepage": "https://ikottman.com/apps/1337-news/",
   "browserslist": [
     "Chrome 74",
     "Firefox 63",

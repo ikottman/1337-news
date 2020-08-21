@@ -17,4 +17,11 @@ a:hover {
 
 li {
   padding-bottom: 3px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.title {
+
 }

@@ -21,7 +21,10 @@ export const Stories = () => {
         {
           (story) => {
             return (
-            <Story story={story} />
+            <>
+              <Story story={story} />
+              <div class="divider"/>
+            </>
           );
         }
       }
