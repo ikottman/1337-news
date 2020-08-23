@@ -13,7 +13,7 @@ import './Comments.css';
    type: string
  };
 export const Comments = () => {
-  const [state, setState] = createState({comments: []});
+  const [state, setState] = createState({comments: [], story: { title: '', url: '' }});
   const { getItems, getItem } = useStore();
   const [storyId, setStoryId] = createSignal(window.location.hash.split('/')[1]);
   const handleHashChange = () => setStoryId(window.location.hash.split('/')[1]);
@@ -23,7 +23,7 @@ export const Comments = () => {
   createEffect(async () => {
     const story = await getItem(storyId());
     const comments = await getItems(story.kids, 0, 30);;
-    setState({ comments });
+    setState({ comments, story: { title: story.title, url: story.url }});
   });
 
   function username(comment: Comment) {
@@ -42,18 +42,23 @@ export const Comments = () => {
       return null;
     }
     return (
-      <div>
+      <li>
         {username(comment)}
         <p class="comment" innerHTML={comment.text} />
         <div>
           <div class="divider"/>
         </div>
-      </div>
+      </li>
     );
   }
 
   return (
     <ul>
+      <li>
+        <a href={state.story.url}>
+            {state.story.title}
+        </a>
+      </li>
       <For each={state.comments}>
         {
           (comment: Comment) => <>{renderComment(comment)}</>
