@@ -1,7 +1,6 @@
 import { createSignal, onCleanup } from "solid-js";
 import { Switch, Match } from "solid-js/dom";
 import { Stories } from './Stories';
-import { StoreProvider } from './Store';
 import { Comments } from "./Comments";
 import { Header } from "./Header";
 
@@ -16,7 +15,7 @@ function createRouteHandler() {
 function App() {
   const matches = createRouteHandler();
   return (
-    <StoreProvider>
+    <>
       <Header/>
       <Switch>
         <Match when={matches("stories")}>
@@ -26,7 +25,7 @@ function App() {
           <Comments/>
         </Match>
       </Switch>
-    </StoreProvider>
+    </>
   );
 }
 

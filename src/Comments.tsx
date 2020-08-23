@@ -1,20 +1,18 @@
 import { createState, createEffect, createSignal, onCleanup } from "solid-js";
 import { For } from "solid-js/dom";
-import { useStore } from "./Store";
 import './Comments.css';
+import { getItem, getItems, Item } from './Service';
 
- type Comment = {
-   by: string,
-   id: number,
-   kids: number[],
-   parent: number,
-   text: string,
-   time: number,
-   type: string
- };
+ type State = {
+   comments: Item[],
+   story: {
+     title: string,
+     url: string
+   }
+ }
+
 export const Comments = () => {
-  const [state, setState] = createState({comments: [], story: { title: '', url: '' }});
-  const { getItems, getItem } = useStore();
+  const [state, setState] = createState<State>({comments: [], story: { title: '', url: '' }});
   const [storyId, setStoryId] = createSignal(window.location.hash.split('/')[1]);
   const handleHashChange = () => setStoryId(window.location.hash.split('/')[1]);
   window.addEventListener("hashchange", handleHashChange);
@@ -26,7 +24,7 @@ export const Comments = () => {
     setState({ comments, story: { title: story.title, url: story.url }});
   });
 
-  function username(comment: Comment) {
+  function username(comment: Item) {
     if (!comment.kids) {
       return <span class="username">{comment.by}</span>;
     }
@@ -37,7 +35,7 @@ export const Comments = () => {
     );
   }
 
-  function renderComment(comment: Comment) {
+  function renderComment(comment: Item) {
     if (!comment.text) {
       return null;
     }
@@ -61,7 +59,7 @@ export const Comments = () => {
       </li>
       <For each={state.comments}>
         {
-          (comment: Comment) => <>{renderComment(comment)}</>
+          (comment: Item) => <>{renderComment(comment)}</>
         }
       </For>
     </ul>
