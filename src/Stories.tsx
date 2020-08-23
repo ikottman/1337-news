@@ -11,8 +11,16 @@ type State = {
 export const Stories = () => {
   const [state, setState] = createState<State>({ stories: [] });
 
+  function getPage(): number {
+    const param = new URLSearchParams(window.location.search).get('page');
+    if (param) {
+      return Number.parseInt(param);
+    }
+    return 0;
+  }
+
   createEffect(async () => {
-    const stories = await getStories('top', 0);
+    const stories = await getStories('top', getPage());
     setState({ stories });
   });
 
@@ -30,6 +38,9 @@ export const Stories = () => {
         }
       }
       </For>
+      <li>
+    <a href={`?page=${getPage() + 1}`}>Page {getPage() + 1}</a>
+      </li>
     </ul>
   );
 };
